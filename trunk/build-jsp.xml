@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<project name="bookvenue" basedir="." default="prepare.bookvenue.war" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+	<property file="build.properties" />
+	<property name="dist.dir" value="${bookvenue.root}/dist" />
+	<property name="build.dir" value="${bookvenue.root}/build" />		
+	<property name="apiDto.dir" value="${bookvenue.root}/dtoBuild" />
+
+	<property name="web-inf.dir" value="${bookvenue.root}/src/main/webapp/WEB-INF" />
+	<property name="main.src.dir" value="${bookvenue.root}/src/main/java" />
+	<property name="main.test.dir" value="${bookvenue.root}/src/test/java" />
+	<property name="webapp.dir" value="${bookvenue.root}/src/main/webapp" />
+
+	<property name="server.lib" value="${bookvenue.root}/ext/lib/server" />
+
+	<path id="maven-ant-tasks.classpath" path="${bookvenue.root}/ext/lib/compiler/maven-ant-tasks-2.1.3.jar" />
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
+
+	<path id="antcontrib.classpath" path="${bookvenue.root}/tools/lib/ant-contrib-1.0b3.jar" />
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="antcontrib.classpath" />
+
+	<artifact:pom id="mypom" file="pom.xml" />
+
+	<path id="webapp.class.path">
+		<fileset refid="dependency.fileset" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/war" />
+		<mkdir dir="${build.dir}/lib" />
+
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<target name="process.dependencies">
+		<artifact:pom id="webapp.pom" file="pom.xml" />
+		<artifact:dependencies pathId="webapp.pom.classpath" filesetId="webapp.pom.fileset" useScope="runtime">
+			<pom refid="webapp.pom" />
+		</artifact:dependencies>
+	</target>
+
+	<target name="prepare.bookvenue.war" depends="clean, process.dependencies">
+		<!-- Copy folder structure -->
+		<copy todir="${build.dir}/war" filtering="false" overwrite="yes">
+			<fileset dir="${webapp.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- Compile code -->
+		<javac destdir="${build.dir}/war/WEB-INF/classes" 
+			deprecation="${javac.deprecation}" 
+			debug="${javac.debug}" 
+			optimize="${javac.optimize}" 
+			nowarn="${java.nowarn}" 
+			includeAntRuntime="no" 
+			failonerror="true" 
+			srcdir="${main.src.dir}">
+			<classpath>
+				<fileset dir="${server.lib}">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<include name="**/*.java" />
+			<classpath refid="webapp.pom.classpath" />
+		</javac>
+
+		<!-- Copy dependancy Jars -->
+		<copy todir="${build.dir}/war/WEB-INF/lib/">
+			<fileset refid="webapp.pom.fileset" />
+			<mapper type="flatten" />
+		</copy>
+
+		<!-- Copy web.xml -->
+		<war warfile="${dist.dir}/ROOT.war" webxml="${web-inf.dir}/web.xml">
+			<fileset dir="${build.dir}/war">
+				<include name="**/**" />
+			</fileset>
+		</war>
+
+	</target>
+
+	<target name="deploy.bookvenue.jsp">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/WEB-INF/jsp/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/WEB-INF/jsp">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="deploy.bookvenue.img">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/img/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/img">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="deploy.bookvenue.jsp.js">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/WEB-INF/jsp/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/WEB-INF/jsp">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/js/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/js">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="deploy.bookvenue.jsp.js.css">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/WEB-INF/jsp/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/WEB-INF/jsp">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/js/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/js">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/css/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/css">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="deploy.bookvenue.jsp.assets">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/WEB-INF/jsp/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/WEB-INF/jsp">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/js/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/js">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/assets-minified/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/assets-minified">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="deploy.bookvenue.res">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}/ROOT/WEB-INF/res/" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${webapp.dir}/WEB-INF/res">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+
+	</target>
+
+	<target name="deploy.bookvenue.war" depends="prepare.bookvenue.war">
+		<scp file="${dist.dir}/ROOT.war" todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}" port="${staging.ssh.port}" trust="true" />
+		<sshexec host="${staging.server}" username="${staging.username}" password="${staging.password}" commandResource="${staging.deploy-script}" port="${staging.ssh.port}" trust="true" />
+	</target>
+
+	<target name="deploy.local.bookvenue.war" depends="prepare.bookvenue.war">
+		<copy file="${dist.dir}/ROOT.war" todir="${staging.webapp.dir}">
+		</copy>
+		<exec executable="/bin/bash" logerror="true">
+			<arg value="${staging.local.deploy-script}" />
+		</exec>
+	</target>
+
+	<target name="deploy.local.bookvenue.war.conf" depends="prepare.bookvenue.war">
+		<copy file="${dist.dir}/ROOT.war" todir="${staging.webapp.dir}">
+		</copy>
+		<copy todir="${staging.server.conf}">
+			<fileset dir="${bookvenue.root}/conf">
+				<include name="**/**"/>
+			</fileset>
+		</copy>
+		<exec executable="${staging.local.deploy-script}" spawn="false">
+		</exec>
+	</target>
+
+	<target name="restart.local.server">
+		<exec executable="${staging.restart-script}" spawn="false">
+		</exec>
+	</target>
+
+	<target name="copy.bookvenue.war">
+		<scp file="${target.bookvenue.ROOT.war}" todir="${staging.username}:${staging.password}@${staging.server}:${staging.webapp.dir}" port="${staging.ssh.port}" trust="true" />
+		<sshexec host="${staging.server}" username="${staging.username}" password="${staging.password}" commandResource="${staging.deploy-script}" port="${staging.ssh.port}" trust="true" />
+	</target>
+
+	<target name="deploy.bookvenue.server.conf">
+		<scp file="${target.bookvenue.ROOT.war}" todir="${staging.username}:${staging.password}@${staging.server}:${staging.server.conf}" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${bookvenue.root}/conf">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+		<sshexec host="${staging.server}" username="${staging.username}" password="${staging.password}" commandResource="${staging.restart-script}" port="${staging.ssh.port}" trust="true" />
+	</target>
+
+	<target name="copy.bookvenue.db.file">
+		<scp todir="${staging.username}:${staging.password}@${staging.server}:${staging.tmp.dir}" port="${staging.ssh.port}" trust="true" >
+			<fileset dir="${bookvenue.root}/db">
+				<include name="**/**"/>
+			</fileset>
+		</scp>
+	</target>
+
+	<target name="build.api.dto.jar">
+		<delete dir="${apiDto.dir}/classes" />
+		<mkdir dir="${apiDto.dir}/classes" />
+		<javac destdir="${apiDto.dir}/classes" deprecation="${javac.deprecation}" debug="${javac.debug}" optimize="${javac.optimize}" nowarn="${java.nowarn}" includeAntRuntime="no" failonerror="true" srcdir="${apiDto.dir}/java">
+			<include name="**/*.java" />
+		</javac>
+		<jar destfile="${apiDto.dir}/bookvenue-api-dto.jar" basedir="${apiDto.dir}/classes" includes="*"/>
+	</target>
+
+</project>

@@ -1,0 +1,263 @@
+i {
+	cursor: pointer;
+}
+
+.header-text{
+	text-align:center;
+}
+ .menuli{
+	background-color:black;
+}
+.hometext{
+	height:165px;
+}
+.dimmer {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.example-box-wrapper .ui-tabs {
+		height: 350px;
+	}
+#donutCanvas8797026147411{
+	width: 350px;
+    height: 281px;
+    margin-left: 25px;
+}
+myDivUl {
+	list-style-type: none;
+	text-align: center;
+	display: block;
+}
+
+.close, .open {
+	position: absolute;
+	right: 20px;
+	top: 30px;
+	display: block;
+}
+
+@media only screen and (max-width: 1050px) {
+	.dimmer {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 109%;
+		height: 100%;
+		margin-left: -15px;
+	}
+	.myDivUl {
+		list-style-type: none;
+		text-align: center;
+		display: block;
+		background-color: currentColor;
+	}
+	.close, .open {
+		right: 50px;
+		top: unset;
+	}
+	.dimmer {
+		top: -3px;
+		width: 109%;
+		margin-left: -44px;
+	}
+}
+.ui-tabs-nav li {
+    margin-bottom: -1px;
+    font-size: 13px;
+}
+@media only screen and (max-width: 1030px) {
+	.myDivLi {
+		margin-right: 30px;
+	}
+	.close, .open {
+		right: 30px;
+		top: 59px;
+	}
+}
+@media only screen and (max-width: 800px) {
+	.close, .open {
+		right: 20px;
+		top: unset;
+	}
+}
+
+@media only screen and (max-width: 1366px) {
+	.example-box-wrapper .ui-tabs {
+		height: 402px;
+	}
+	.mrg15B .content-box-wrapper {
+		
+	}
+	.content-box-wrapper .ui-tabs {
+		height: 270px;
+	}
+	.dropdown .fontsize {
+		dispaly: inline-block;
+	}
+	.table-bordered {
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+    height: 270px;
+}
+}
+
+@media only screen and (min-width:1051px) {
+	.minimize-menu {
+		position: relative;
+		top: 9px;
+	}
+	
+}
+
+@media only screen and (max-width: 400px) {
+	.logoSet img {
+		width: 75px !important;
+		height: 75px !important;
+	}
+}
+
+@media only screen and (max-width: 1050px) {
+	.minimize-menu {
+		position: relative;
+		bottom: 11px;
+		margin-right: 0px;
+		top: -35px;
+	}
+	.main-header ul.main-nav {
+		float: none !important;
+		clear: both;
+		margin: 115px 15px 0 !important;
+		background: rgba(0, 0, 0, .1);
+		display: none;
+		border: 0
+	}
+	.container .clearfix .minimize-menu {
+		margin-right: 0px !important;
+	}
+	.dropdown .header-text {
+		top: 32px;
+	}
+	.panchayattext {
+		float-left: 24px;
+	}
+	.govttext {
+		font-size: 13px;
+	}
+	#homeSpacingDiv {
+		margin-top: 0px;
+	}
+	.content-box-wrapper {
+		
+	}
+	.barDiv1 .content-box-wrapper {
+		height: 243px;
+	}
+	#homeSpacingDiv {
+		margin-top: 0px;
+	}
+	@media only screen and (max-width: 991px) {
+		.panchayattext {
+			font-size: 23px
+		}
+		.close, .open {
+			right: 50px;
+			top: 60px;
+		}
+		.dimmer {
+			top: -3px;
+			width: 100%;
+			margin-left: -15px;
+		}
+		.myDivUl {
+			width: 100%;
+		}
+	}
+	@media only screen and (max-width: 925px) {
+		.myDivLi {
+			margin-right: 70px;
+			margin-left: 20px;
+		}
+	}
+	@media only screen and (max-width: 840px) {
+		.myDivLi {
+			margin-right: 100px;
+			margin-left: 20px;
+		}
+	}
+	@media only screen and (max-width: 800px) {
+		.dimmer {
+			top: -31px;
+		}
+		.close, .open {
+			   margin-top: -15px;
+    margin-right: 0px;
+		}
+	}
+	@media only screen and (max-width: 684px) {
+		.dimmer {
+			top: -57px;
+		}
+		.close, .open{
+		     margin-top: -43px;
+		}
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.dimmer {
+		top: -74px;
+	}
+}
+
+@media ( min-width :602px) {
+	.minimize-menu {
+		top: -72px;
+	}
+}
+
+@media ( max-width :1199px and min-width:460px) {
+	.panchayattext {
+		font-size: 15px;
+	}
+	.close, .open {
+    right: 0px;
+    top: 55px;
+}
+}
+
+@media ( min-width :378px) {
+	.panchayattext {
+		font-size: 19px
+	}
+.close, .open {
+   right: 13px;
+    top: 55px;
+}
+}
+.myDivLi {
+	    margin-left: 20px;
+    margin-right: 20px;
+}
+}
+@media ( max-width :1199px and min-width:992px) {
+	.clearLeft {
+		clear: left;
+	}
+}
+
+@media ( max-width : 410px) { .
+	clearLeft222 {
+		clear: left;
+	}
+}
+@media ( max-width : 320px){
+	.close, .open {
+   margin-right:-35px;
+   
+}
+}

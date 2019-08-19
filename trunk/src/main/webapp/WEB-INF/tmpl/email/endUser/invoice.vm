@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+img {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.main-div {
+margin: 0 5px;
+}
+.img-div {
+border-bottom: 2px solid gray;
+}
+.container-div span{
+line-height: 22px;
+}
+.span-div {
+width: 100px;
+float: left;
+display: flex;
+}
+</style>
+</head>
+<body>
+<div class="main-div">
+<div class="img-div">
+<img src="http://shilparamam.in/public/images/logo.png" class="img-responsive logo" alt="shilp-logo" style="width:10%;margin-bottom: 25px;">
+</div>
+
+<div class="container-div">
+<h3>Welcome to Shilparamam! Governament Of Telangana .</h3>
+
+<span style="margin-bottom: 0x; display: flex;">Hi $invoice.name ,</span><br>
+<span class="span-div">Invoice</span><span style="width:50px">: </span><span>$invoice.applicationId</span><br>
+<span class="span-div">Name</span><span style="width:50px">: </span></span><span>$invoice.name</span><br>
+<span class="span-div">Mobile Number</span><span style="width:50px">: </span><span>$invoice.mobileNumber</span><br>
+<span class="span-div">Id type</span><span style="width:50px">: </span><span>$invoice.idProofType</span><br>
+<span class="span-div">Id proof</span><span style="width:50px">: </span><span>$invoice.idProof</span><br>
+<span class="span-div">Booking date</span><span style="width:50px">: </span><span>$invoice.bookingDate</span><br>
+<span class="span-div">Venue</span><span style="width:50px">: </span><span>$invoice.propertyName</span><br>
+<span class="span-div">Purpose</span><span style="width:50px">: </span><span>$invoice.purposeName</span><br>
+<span class="span-div">Price</span><span style="width:50px">: </span><span>$invoice.price</span><br>
+<span class="span-div">Service tax</span><span style="width:50px">: </span><span>$invoice.serviceTax</span><br>
+<span class="span-div">CGST</span><span style="width:50px">: </span><span>$invoice.cgst</span><br>
+<span class="span-div">SGST</span><span style="width:50px">: </span><span>$invoice.sgst</span><br>
+<span class="span-div">Total price</span><span style="width:50px">: </span><span>$invoice.total</span><br>
+<p><b>Note :</b> Hi $invoice.name , In case if you have any queries , feel free to just respond to this email. We would be excited to connect and hear about your accomplishments soon.</p>
+
+<span>Best Regards,<br>Shilaparamam Management,<br>Hyderabad.</span>
+</div>
+</div>
+</body>
+</html>

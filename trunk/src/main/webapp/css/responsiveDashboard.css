@@ -1,0 +1,168 @@
+@media only screen and (max-width: 1050px) {
+	.dataDispay {
+		padding-top: 60px;
+	}
+}
+
+.displayDistrict {
+	padding-top: 10px;
+}
+
+.displayDivision {
+	padding-top: 10px;
+}
+
+.displayMandal {
+	padding-top: 10px
+}
+
+.submitData{
+	padding-top: 28px;
+}
+ .displayPanchayat {
+	padding-top: 10px;
+} 
+
+#desktopDropDowns {
+	display: block;
+}
+
+}
+@media only screen and (max-width:1050px and min-width:800px) {
+	#summaryDashboardButtonDiv {
+		margin-top: 50px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	#summaryDashboardButtonDiv .dashboard-Name {
+		padding-top: 19px;
+	}
+	#header-logo {
+		margin-left: -225px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.refreshFloat {
+		padding-top: 15px;
+	}
+	.dashboard-Name {
+		padding-top: 45px;
+	}
+	#header-logo a {
+		line-height: 0px;
+	}
+	/* #page-wrapper {
+		padding-top: 40px !important;
+	} */
+}
+
+@media only screen and (max-width: 750px) {
+	.dropdown img .prisLogo {
+		height: auto !important;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	#desktopDropDowns {
+		display: table;
+	}
+}
+
+@media only screen and (max-width: 540px) {
+	#summaryDashboardButtonDiv h3 {
+		margin-left: 15px;
+	}
+	.refreshFloat {
+		float-right: 15px;
+	}
+	.row {
+		margin-rigth: 0px !important;
+		margin-left: 0px !important:
+	}
+	.refreshFloat {
+		margin-right: 20px;
+	}
+	/* #page-wrapper {
+		padding-top: 60px !important;
+	} */
+}
+@media only screen and (max-width: 400px) {
+	#page-wrapper {
+		padding-top: 0px !important;
+	}
+}
+
+@media only screen and (max-width: 380px) {
+	.prisLogo {
+		width: 96px !important;
+		height: auto !important;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.textDisplay .fontSize {
+	    padding-top: 14px;
+		font-size: 14px !important;
+	}
+	#summaryDashboardButtonDiv {
+		margin-top: auto;
+	}
+}
+
+@media only screen and (max-width: 406px) {
+	#page-header {
+		position: unset !important;
+		height: auto !important;
+	}
+	.profileLogout {
+		top: 108px;
+	}
+	.widthProfile {
+		width: 280 !important;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	#header-left {
+		float: unset;
+		margin-left: 15px;
+	}
+	#desktopDropDowns {
+		display: none;
+	}
+	.dataDispay {
+		padding-top: 0px;
+	}
+	.row #desktopDropDowns {
+		padding-right: 25px;
+	}
+	.refreshFloat {
+		margin-right: 22px;
+	}
+	.textDisplay .fontSize {
+	     padding-top: 14px;
+		display: inline-block;
+		font-size: 15px !important;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	
+}
+
+.textDisplay .fontSize {
+	padding-top: 13px;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.hoverList a:hover {
+	background-color: lightblue;
+}
+
+.hoverList1 a:hover {
+	background-color: lightsteelblue;
+	color: black;
+}

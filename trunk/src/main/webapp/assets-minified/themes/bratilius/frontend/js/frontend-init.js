@@ -1,0 +1,1 @@
+(new WOW).init(),jQuery(document).ready(function(a){a(function(){"use strict";a(".sticky-nav").hcSticky({top:50})}),a(function(){"use strict";a(".main-nav").superfish({animation:{opacity:"show"},animationOut:{opacity:"hide"}})}),a(function(){"use strict";a("#responsive-menu").click(function(){a(".main-header ul.main-nav").toggle()})})});

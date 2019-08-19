@@ -1,0 +1,258 @@
+
+.audio-pad{
+	padding-top:50px;
+}
+
+.page-content-filter {
+ .page-content	
+}
+.responsive-menu {
+  position: relative;
+}
+
+.main-menu, .sub-menu {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+.main-menu li, .sub-menu li {
+  font-size: 1.2rem;
+}
+
+.main-menu > li {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.main-menu > li a {
+  display: block;
+}
+.main-menu > li.active .sub-menu {
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: 0;
+  z-index: 20;
+}
+@media only screen and (min-width: 1221px) {
+  .main-menu > li:hover .sub-menu {
+    opacity: 1;
+    pointer-events: auto;
+    margin-top: 0;
+    z-index: 20;
+  }
+}
+.main-menu .expand {
+  display: none;
+}
+@media only screen and (max-width: 1220px) {
+  .main-menu {
+    opacity: 0;
+    pointer-events: none;
+    margin-top: 20px;
+    -webkit-transition: 200ms all;
+    transition: 200ms all;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    min-width: 200px;
+    width: 80%;
+    left: 10%;
+  }
+  .main-menu li {
+    display: block;
+  }
+  .main-menu .expand {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    z-index: 15;
+    -webkit-transform-origin: 50%;
+            transform-origin: 50%;
+    -webkit-transition: 200ms all;
+    transition: 200ms all;
+  }
+  .main-menu .expand.active {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+}
+@media only screen and (max-width: 1220px) {
+  .main-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    margin-top: 0;
+    z-index: 20;
+  }
+}
+
+.sub-menu {
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 20px;
+  -webkit-transition: 200ms all;
+  transition: 200ms all;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: auto;
+  min-width: 200px;
+}
+@media only screen and (max-width: 1220px) {
+  .sub-menu {
+    display: block;
+    z-index: 20;
+    width: 100%;
+  }
+}
+.sub-menu li a {
+  display: block;
+}
+
+.toggle-menu {
+  display: none;
+}
+@media only screen and (max-width: 1220px) {
+  .toggle-menu {
+    display: inline-block;
+  }
+}
+
+body {
+  font-family: sans-serif;
+}
+
+header {
+  background: #333333;
+  font-size: 0;
+}
+
+
+nav {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  background: #333333;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media only screen and (min-width: 1221px) {
+  nav {
+    text-align: right;
+  }
+}
+
+.toggle-menu {
+  color: #ffffff;
+  padding-right: 1rem;
+  float: right;
+}
+.toggle-menu span {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 0.3rem;
+}
+.toggle-menu svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+}
+
+.main-menu, .sub-menu {
+  background: #333333;
+}
+.main-menu li a, .sub-menu li a {
+  padding: 1rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: left;
+}
+.main-menu .expand, .sub-menu .expand {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 1220px) {
+  .sub-menu {
+    background: #777777;
+  }
+}
+
+.loaderSpinner120 {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+    margin: 10px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+}
+.loaderBar {
+  height: 4px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+.loaderBar:before{
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 4px;
+  background-color: #2980b9;
+  animation: loading 4s linear infinite;
+}
+
+@keyframes loading {
+    from {left: -200px; width: 30%;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% { left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%;}
+}
+
+.paddingt5 {
+	padding-top: 5px;
+}
+
+.paddingt8 {
+	padding-top: 8px;
+}
+
+.paddingt10 {
+	padding-top: 10px;
+}
+

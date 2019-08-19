@@ -1,0 +1,11 @@
+use mysql;
+DROP DATABASE IF EXISTS sbv;
+REVOKE ALL ON *.* FROM 'sbv';
+DELETE FROM mysql.user WHERE User='sbv';
+DROP USER 'sbv';
+FLUSH PRIVILEGES;
+CREATE USER 'sbv' IDENTIFIED WITH mysql_native_password BY '1_SbvDataBase';
+CREATE DATABASE IF NOT EXISTS sbv CHARACTER SET utf8;
+GRANT ALL PRIVILEGES ON bv.* TO 'sbv';
+GRANT ALL PRIVILEGES ON *.* TO 'sbv'@'%' WITH GRANT OPTION;
+use sbv;
