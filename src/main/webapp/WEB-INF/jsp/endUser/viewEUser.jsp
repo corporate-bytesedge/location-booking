@@ -1,0 +1,160 @@
+<%@ include file="/WEB-INF/jsp/taglibs.jsp"%>
+
+<style>
+.text-centrCls h3 {
+	font-weight: 550;
+    font-size: 25px;
+    padding-left: 180px;
+    margin-bottom: 5px;
+}
+.form-top{
+	margin-right: 30px;
+	float: right;
+}
+
+@media screen and (max-width: 1050px){
+	.margn-btm {
+		margin-bottom: 0px;
+	}
+}
+
+@media screen and (max-width: 992px){
+	.text-centrCls h3 {
+		padding-left: 20px;
+	}
+}
+</style>
+<div class="center-content">
+	<div class="example-box-wrapper card">
+			<div id="viewEndUserDiv" class="example-box-wrapper" style="margin-top: 30px;">
+			<div id="endUserButtonsDiv" class="form-top">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="example-box-wrapper">
+							<button id="endUserViewBackBt" name="endUserViewBackBt" type="button"
+								class="btn btn-info"
+								onClick="javascript:getUrl('/app/endUser/list?reqPage=${reqPage}&pageSize=${pageSize}','page-content-holder');">
+								<i class="glyph-icon icon-minus-square"></i>&nbsp;
+								<spring:message code="endUserList-form.back-button" />
+							</button>
+						</div>
+					</div>
+				</div>
+			<br>
+			<br>
+			<form:form id="viewEndUserForm" name="viewEndUserForm"
+				class="form-horizontal" data-parsley-validate=""
+				action="javascript:submitForm('/app/endUser/view', 'viewEndUserForm', 'page-content-holder')"
+				method='POST' modelAttribute="endUserForm">
+				<div class="text-centrCls">
+				<h3>
+					<spring:message code="viewEndUser-form.viewEndUser-label" />
+				</h3>
+			</div>
+				<input type="hidden" path="<c:out value="${_csrf.parameterName}"/>"
+					name="<c:out value="${_csrf.parameterName}"/>"
+					value="<c:out value="${_csrf.token}"/>" />
+				<div id="viewEndUserApplicationIdDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.applicationId-label" /> <span
+						class="required">:</span>
+					</label>
+					<div id="viewEndUserApplicationIdDiv" class="col-sm-8 paddingt8">${ endUserForm.applicationId}</div>
+				</div>
+				<div id="viewEndUserNameDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.Name-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserNameDiv" class="col-sm-8 paddingt8">${ endUserForm.name}</div>
+				</div>
+				<div id="viewEndUserEmailDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.email-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserEmailDiv" class="col-sm-8 paddingt8">
+						${endUserForm.email}</div>
+				</div>
+				<div id="viewEndUserTypeDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.type-label" />:<span class="required"></span>
+					</label>
+					<div id="viewEndUserTypeDiv" class="col-sm-8 paddingt8">${ endUserForm.idProofType}</div>
+				</div>
+
+				<div id="viewEndUserIdProofDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.idProof-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserIdProofDiv" class="col-sm-8 paddingt8">
+						${endUserForm.idProof}</div>
+				</div>
+				<div id="viewEndUserMobileNumberDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.mobileNumber-label" /> <span
+						class="required">:</span>
+					</label>
+					<div id="viewEndUserMobileNumberDiv" class="col-sm-8 paddingt8">
+						${endUserForm.mobileNumber}</div>
+				</div>
+				<div id="viewEndUserDateDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.date-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserDateDiv" class="col-sm-8 paddingt8">
+						<fmt:formatDate value="${endUserForm.bookingDate}" pattern="dd-MMM-yyyy" />
+					</div>
+				</div>
+				<div id="viewEndUserPropertyNameDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.propertyName-label" /> <span
+						class="required">:</span>
+					</label>
+					<div id="viewEndUserPropertyNameDiv" class="col-sm-8 paddingt8">
+						${endUserForm.propertyName}</div>
+				</div>
+				<div id="viewEndUserPurposeNameDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.purpose-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserPropertyNameDiv" class="col-sm-8 paddingt8">
+						${endUserForm.purposeName}</div>
+				</div>
+
+				<div id="viewEndUserAddressDiv" class="form-group">
+					<label for="" class="col-sm-2 control-label"> <spring:message
+							code="viewEndUser-form.address-label" /> <span class="required">:</span>
+					</label>
+					<div id="viewEndUserAddressDiv" class="col-sm-8 paddingt8">
+						${endUserForm.addr}</div>
+				</div>
+				<div class="divider"></div>
+				<%--<div id="endUserButtonsDiv" class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="example-box-wrapper">
+							<a id="endUserViewPayBt" name="endUserViewPayBt"
+								type="button" class="btn btn-success" target="_blank"
+								href="/apu/loadPaymentGateway?id=${endUserForm.id}">
+								<i class="glyph-icon icon-arrow-circle-down"></i>&nbsp; Confirm
+							</a>
+						</div>
+					</div>
+				</div>--%>
+				
+				<div id="endUserButtonsDiv" class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<div class="example-box-wrapper">
+							<button id="endUserViewBackBt" name="endUserViewBackBt" type="button"
+								class="btn btn-info"
+								onClick="javascript:getUrl('/app/endUser/list?reqPage=${reqPage}&pageSize=${pageSize}','page-content-holder');">
+								<i class="glyph-icon icon-minus-square"></i>&nbsp;
+								<spring:message code="endUserList-form.back-button" />
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</form:form>
+		</div>
+	</div>
+</div>

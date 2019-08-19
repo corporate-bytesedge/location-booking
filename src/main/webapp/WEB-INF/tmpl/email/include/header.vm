@@ -1,0 +1,16 @@
+<div class="border-change">
+	<div class="maindiv">
+		<div class="row">
+			<div class="logo-img">
+				<img src="/img/logo.png" class="img-responsive">
+			</div>
+			<div class="text-p">
+				<span><p class="Panchayat">Panchayat Raj Department</p></span>
+				<span><p style="text-align: center;"><b>Governament Of Telangana</b></p></span>
+			</div>
+			<div class="pris">
+				<img src="/img/prislogo.png" class="img-responsive">
+			</div>			
+		</div>
+	</div>
+</div>

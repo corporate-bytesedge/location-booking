@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.logo{
+			float: left;
+			width: 75px;
+			height: 75px;
+			margin-right: 150px;
+			margin-top: 15px;
+		}
+		.text{
+			text-align: center;
+			float: left;
+			margin-right: 150px;
+		}
+		.prislogo{
+			width: 100px;
+			height: 100px;
+		}
+		.rightData{
+			float: right;
+		}
+		hr{
+			width: 100%;
+		}
+		.maindiv{
+			margin-left: 100px;
+		}
+		.footerLi{
+			float: left;
+		}
+		.footerLiright{
+			float: right;
+		}
+		.footerLiright img{
+			width: 15px;
+		}
+
+
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<center>
+	<div class="header">
+	<img src="https://ts.shadkona.com/apu/image/gov/logo.png" class="img-responsive logo" alt="shilp" style="padding-left: 5px; padding-top: 3px;" width="96px;" height="96px;">
+		<div class="text">
+			<h1>Shilparamam</h1>
+			
+		</div>
+		<img src="https://ts.shadkona.com/img/pris_logo.png" class="prislogo"> 
+	</div>
+</center>
+</div>
+<hr>
+<div class="maindiv">
+	<div class="rightData">
+		<p><b>Hyderabad.</b></p>
+	</div>
+	<div class="leftData">
+		<p><b>To,</b></p>
+		<p><b>$user.displayName,</b></p>
+		<p><b>$user.email.</b></p>
+	</div>
+	<div class="mainData">
+		<h2><b>Welcome to shilparamam.</b></h2>
+		<p><b>Hi $user.displayName</b></p>
+		<p><b>Username :$user.loginName</b></p>
+		<p><b>password :$user.loginPassword</b></p>
+		<p><b>Gender :$user.gender</b></p>
+		<p><b>Aadhaar Number :$user.aadharId</b></p>
+		<p><b>Mobile Number :$user.mobileNumber</b></p>
+		<p><b>Designation :$user.designation</b></p>
+		<p><b>Role Name :$user.roleName</b></p>
+		<p><b>Note : </b>Hi $user.displayName, In case if you have any queries , feel free to just respond to this email. We would be excited to connect and hear about your accomplishments soon.</p>
+	</div>
+	<div class="best">
+		<p><b>Best Wishes ,</b></p>
+		<p><b>BytesEdge ,</b></p>
+		<p><b>Hyderabad .</b></p>		
+	</div>
+</div>
+<hr>
+<div classs="container footer">
+	<div>
+		<ul class="footerLi">
+			<li>This Report is generated from shilparamam.in</li>
+			<li>If any Complaints Please Report to care@bytesedge.com</li>
+		</ul>
+	</div>
+	<div>
+		<ul class="footerLiright">
+			<li>Technology Partner <img src="https://ts.shadkona.com/img/shadkona-favicon.png"> BytesEdge</li>
+		</ul>
+	</div>
+</div>
+</div>
+</body>
+</html>
+

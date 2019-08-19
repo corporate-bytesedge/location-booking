@@ -1,0 +1,170 @@
+#header-logo {
+	text-transform: uppercase;
+	color: #fafafa;
+	background: #20242a
+}
+
+#page-header {
+	background: #343942
+}
+
+#header-left .dropdown>a, #header-logo>a, .user-profile>a {
+	color: #768294
+}
+
+#header-left .dropdown>a:hover, #page-nav-right>a:hover, .user-profile>a:hover
+	{
+	background: #20242a;
+	color: #d1d1d1
+}
+
+#page-nav-right>a {
+	color: #768294
+}
+
+.user-profile>a:hover {
+	color: #d3d3d3
+}
+
+#page-sidebar #sidebar-search {
+	border-bottom: #e2e9f1 solid 1px;
+	border-radius: 3px
+}
+
+#page-sidebar, body {
+	color: #3a4049;
+	background-color: #f5f7f9
+}
+
+.sb-slidebar {
+	background: #20242a;
+	color: #768294
+}
+
+.title-hero {
+	color: #C3C9D3 !important
+}
+
+.chat-box .btn-black {
+	background: #20242a
+}
+
+#sidebar-menu .header {
+	color: #20242a
+}
+
+.chat-box li .status-badge .small-badge {
+	border-color: #2a2a2a !important
+}
+
+#page-sidebar li a {
+	color: #768294
+}
+
+#page-sidebar .divider {
+	background: #e2e9f1
+}
+
+#page-sidebar li a:hover, #page-sidebar li.sfHover>a.sf-with-ul,
+	#sidebar-menu li.active>a {
+	color: #2381E9;
+	background: #fff
+}
+
+#page-sidebar li.sfHover>a.sf-with-ul {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0
+}
+
+#sidebar-menu li ul {
+	padding: 10px;
+	background: #fff
+}
+
+#sidebar-menu li.active ul li a {
+	margin: 0;
+	color: #a4a4a4
+}
+
+#sidebar-menu li.active ul li a:hover {
+	color: #000;
+	background: #fafafa
+}
+
+#page-sidebar li.current-page a, #page-sidebar li.current-page a:hover {
+	color: #fff !important;
+	background: #f87500 !important
+}
+
+.page-box {
+	background: #fff
+}
+
+.page-box h3.page-title {
+	border-bottom: #DFE5E9 solid 1px;
+	color: #2381E9
+}
+
+.page-box h3.page-title small {
+	color: #768294
+}
+
+#dynamic-breadcrumb, #page-breadcrumb {
+	color: #a3a3a3
+}
+
+#dynamic-breadcrumb a, #page-breadcrumb a {
+	color: #7f7f7f
+}
+
+#dynamic-breadcrumb a:hover, #page-breadcrumb a:hover {
+	color: #000
+}
+
+.main-nav {
+	border: 0 !important
+}
+
+.main-nav ul li a:hover, .main-nav ul li ul, .main-nav ul li.sfHover>a.sf-with-ul
+	{
+	background: #fff
+}
+
+.main-nav ul li a {
+	border-color: #ccc
+}
+
+.main-nav ul li ul li a:hover {
+	color: #333;
+	background: #f3f3f3
+}
+
+.main-nav ul li ul {
+	box-shadow: 0 2px 3px rgba(0, 0, 0, .3)
+}
+
+#page-content, #page-content-wrapper {
+	background: #fff
+}
+
+#page-nav {
+	background: #f8f8f8
+}
+
+#page-subnav li a {
+	color: #888
+}
+
+#page-subnav li a.active, #page-subnav li a:hover {
+	color: #333;
+	border-color: #f87500
+}
+
+.sb-slidebar .popover-title {
+	color: rgba(255, 255, 255, .6);
+	background: rgba(255, 255, 255, .1)
+}
+
+.sb-slidebar .popover-title:hover {
+	color: rgba(255, 255, 255, .9)
+}

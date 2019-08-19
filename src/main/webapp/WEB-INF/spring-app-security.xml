@@ -1,0 +1,116 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd 
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" >
+	</security:global-method-security>
+	
+	<!-- http://www.baeldung.com/spring-security-digest-authentication -->
+	<security:http pattern="/api/**" use-expressions="true" entry-point-ref="basicAuthEntryPoint"
+		authentication-manager-ref="basicAuthenticationManager">
+		<security:anonymous enabled="false"/>
+		<security:intercept-url pattern="/api/**" access='isAuthenticated()' />
+		<security:http-basic />
+		<!-- Enables Spring Security CSRF protection -->
+		<!-- security:csrf disabled="true"/ -->
+		<security:csrf request-matcher-ref="csrfApiSecurityRequestMatcher"/>
+	</security:http>
+	
+	<bean id="basicAuthEntryPoint"
+		class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+		<property name="realmName" value="PRAMS_SECURE_AUTH_REALM" />
+	</bean>
+	
+	<security:authentication-manager id="basicAuthenticationManager">
+		<security:authentication-provider ref="basicAuthProvider" />
+	</security:authentication-manager>
+
+	<bean id="basicAuthProvider" class="com.bytesedge.bookvenue.auth.BasicAuthProvider">
+		<property name="hideUserNotFoundExceptions" value="false" />
+		<property name="userDetailsService">
+			<bean class="com.bytesedge.bookvenue.auth.UserAuthService" />
+		</property>
+		<property name="passwordEncoder">
+			<ref bean="passwordEncoder" />
+		</property>
+	</bean>
+	
+	
+	<security:http auto-config="false" use-expressions="true" entry-point-ref="loginUrlAuthenticationEntryPoint" 
+	    authentication-manager-ref="authenticationManager">
+		<!-- Enables Spring Security CSRF protection -->
+		<security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>
+		
+		<!-- Configures the logout function -->
+		<security:logout logout-url="/apu/logout" logout-success-url="/apu/login?logout=1" delete-cookies="JSESSIONID" />
+
+		<security:intercept-url pattern='/app/**' access='isAuthenticated()' requires-channel="any" />
+      	<security:intercept-url pattern='/apu/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/index.jsp' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/assets/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/assets-minified/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/img/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/image/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/js/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/css/**' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/favicon.png' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/favicon.jpg' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/favicon.jpeg' access='permitAll' requires-channel="any" />
+		<security:intercept-url pattern='/**' access='permitAll' requires-channel="any" />
+		<security:session-management invalid-session-url="/apu/login" session-fixation-protection="migrateSession">
+			<security:concurrency-control expired-url="/apu/login"/>
+		</security:session-management>
+		<security:access-denied-handler error-page="/apu/login?error=403" />
+		<security:custom-filter ref="customUsernamePasswordAuthfilter" position="FORM_LOGIN_FILTER"/>
+		<!-- <security:headers>
+			<security:frame-options policy="ALLOW-FROM" strategy="regexp" value="https://paynetzuat.atomtech.in/*" />
+		</security:headers> -->
+	</security:http>
+
+	<bean id="customUsernamePasswordAuthfilter" class="com.bytesedge.bookvenue.auth.CustomUsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="authenticationFailureHandler" ref="failureHandler"/>
+		<property name="authenticationSuccessHandler" ref="successHandler"/>
+		<property name="usernameParameter" value="username"/>
+		<property name="passwordParameter" value="password"/>
+		<property name="filterProcessesUrl" value="/apu/login"/>
+	</bean>
+	
+	<bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg type = "java.lang.String" value = "/apu/loginPage"/>
+	</bean>
+	
+	<bean id="successHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/app/dashboard" />
+	</bean>
+	
+	<bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/apu/loginPage?error=401" />
+	</bean>
+		
+	<bean id="csrfSecurityRequestMatcher" class="com.bytesedge.bookvenue.common.CsrfSecurityRequestMatcher"/>
+	
+	<bean id="csrfApiSecurityRequestMatcher" class="com.bytesedge.bookvenue.common.CsrfApiSecurityRequestMatcher"/>
+	
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider ref="defaultAuthProvider" />
+	</security:authentication-manager>
+
+	<bean id="defaultAuthProvider" class="com.bytesedge.bookvenue.auth.DefaultAuthProvider">
+		<property name="hideUserNotFoundExceptions" value="false" />
+		<property name="userDetailsService">
+			<bean class="com.bytesedge.bookvenue.auth.UserAuthService" />
+		</property>
+		<property name="passwordEncoder">
+			<ref bean="passwordEncoder" />
+		</property>
+	</bean>
+
+	<bean id="passwordEncoder" class="com.bytesedge.bookvenue.auth.PasswordEncoder">
+	</bean>
+
+</beans>

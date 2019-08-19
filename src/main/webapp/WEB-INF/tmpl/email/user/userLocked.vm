@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.logo{
+			float: left;
+			width: 75px;
+			height: 75px;
+			margin-right: 150px;
+			margin-top: 15px;
+		}
+		.text{
+			text-align: center;
+			float: left;
+			margin-right: 150px;
+		}
+		.prislogo{
+			width: 100px;
+			height: 100px;
+		}
+		.rightData{
+			float: right;
+		}
+		hr{
+			width: 100%;
+		}
+		.maindiv{
+			margin-left: 100px;
+		}
+		.footerLi{
+			float: left;
+		}
+		.footerLiright{
+			float: right;
+		}
+		.footerLiright img{
+			width: 15px;
+		}
+
+@media screen and (max-width:768px){
+	.logo {
+    float: left;
+    width: 75px;
+    height: 75px;
+    margin-right: 150px;
+    margin-top: 15px;
+}
+}
+
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<center>
+	<div class="header">
+	<img src="https://ts.shadkona.com/apu/image/gov/logo.png" class="img-responsive logo" alt="PRMS" style="padding-left: 5px; padding-top: 3px;" width="96px;" height="96px;">
+		<div class="text">
+			<h1>Panchayat Raj Department</h1>
+			<h3>Governament Of Telangana</h3>
+		</div>
+		<img src="https://ts.shadkona.com/img/pris_logo.png" class="prislogo"> 
+	</div>
+</center>
+</div>
+<hr>
+<div class="maindiv">
+	<div class="rightData">
+		<p><b>06 Agu 2018,</b></p>
+		<p><b>Hyderabad.</b></p>
+	</div>
+	<div class="leftData">
+		<p><b>To,</b></p>
+		<p><b>$user.displayName,</b></p>
+		<p><b>$user.email.</b></p>
+	</div>
+	<div class="mainData">
+		<h2><b>Welcome to prams! Governament Of Telangana .</b></h2>
+		<p><b>Hi $user.displayName</b></p>
+		<p><b>Username:$user.loginName</b></p>
+		<p><b>Password:$user.loginPassword</b></p>
+		<p><b>Account State:$user.accountState</b></p>
+		<p><b>Locked Time:$user.lockedTime</b></p>
+		<p><b>Gender:$user.gender</b></p>
+		<p><b>Aadhaar Number:$user.aadharId</b></p>
+		<p><b>Mobile Number:$user.mobileNumber</b></p>
+		<p><b>Designation:$user.designation</b></p>
+		<p><b>Role Name:$user.roleName</b></p>
+		<p><b>Note: </b>Hi $user.displayName, In case if you have any queries , feel free to just respond to this email. We would be excited to connect and hear about your accomplishments soon.</p>
+	</div>
+	<div class="best">
+		<p><b>Best Wishes ,</b></p>
+		<p><b>Shadkona Technologies ,</b></p>
+		<p><b>Hyderabad .</b></p>		
+	</div>
+</div>
+<hr>
+<div class="container footer">
+	<div>
+		<ul class="footerLi">
+			<li>This Report is generated from prams.ts.gov.in</li>
+			<li>If any Complaints Please Report to care@ts.shadkona.com</li>
+		</ul>
+	</div>
+	<div>
+		<ul class="footerLiright">
+<li>Technology Partner <img src="https://ts.shadkona.com/img/shadkona-favicon.png"> Shadkona Technologies</li>
+		</ul>
+	</div>
+</div>
+</div>
+</body>
+</html>
