@@ -23,14 +23,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
- * @author divya
- */
-/**
- * @author sandhyavarma
- *
+ * * @author divya
  */
 @Entity
-@Table(name = "sbv_end_user")
+@Table(name = "lb_end_user")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "end_user")
 @SuppressWarnings("serial")

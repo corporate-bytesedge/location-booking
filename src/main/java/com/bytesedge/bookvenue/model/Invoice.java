@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * This class is used to generate the invoice of a book a venue
  */
 @Entity
-@Table(name = "sbv_invoice")
+@Table(name = "lb_invoice")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "invoice")
 @SuppressWarnings("serial")

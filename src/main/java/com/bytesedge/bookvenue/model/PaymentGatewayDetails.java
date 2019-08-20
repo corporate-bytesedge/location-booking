@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * It stores the payment gateway details
  */
 @Entity
-@Table(name = "sbv_payment_gateway_details")
+@Table(name = "lb_payment_gateway_details")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "payment_gateway_details")
 @SuppressWarnings("serial")

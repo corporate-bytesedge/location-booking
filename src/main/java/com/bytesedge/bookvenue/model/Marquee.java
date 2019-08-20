@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * This class is for create the scroller or marquee text
  */
 @Entity
-@Table(name = "sbv_marquee")
+@Table(name = "lb_marquee")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "marquee")
 @SuppressWarnings("serial")

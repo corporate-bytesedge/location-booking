@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * property rent price shows the price of book a venue and including taxes
  */
 @Entity
-@Table(name = "sbv_property_rent_price")
+@Table(name = "lb_property_rent_price")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "property_rent_price")
 @SuppressWarnings("serial")

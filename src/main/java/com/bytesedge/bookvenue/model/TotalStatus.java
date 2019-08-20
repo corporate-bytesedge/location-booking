@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author Divya
  */
 @Entity
-@Table(name = "sbv_total_status")
+@Table(name = "lb_total_status")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "total_status")
 @SuppressWarnings("serial")

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * This form shows the different purposes
  */
 @Entity
-@Table(name = "sbv_rent_purpose")
+@Table(name = "lb_rent_purpose")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "rent_purpose")
 @SuppressWarnings("serial")

@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
  * @author Divya
  */
 @Entity
-@Table(name = "sbv_context")
+@Table(name = "lb_context")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "context")
 @SuppressWarnings("serial")

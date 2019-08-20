@@ -14,7 +14,7 @@ import javax.persistence.Transient;
  * @author divya
  */
 @Entity
-@Table(name = "sbv_audit_data")
+@Table(name = "lb_audit_data")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "audit_data")
 @SuppressWarnings("serial")

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author divya
  */
 @Entity
-@Table(name = "sbv_bill")
+@Table(name = "lb_bill")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "bill")
 @SuppressWarnings("serial")

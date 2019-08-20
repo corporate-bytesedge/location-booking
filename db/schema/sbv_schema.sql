@@ -1,9 +1,9 @@
 
-use sbv;
+use lb;
 
-DROP TABLE IF EXISTS `sbv_server_prop`;
+DROP TABLE IF EXISTS `lb_server_prop`;
 
-CREATE TABLE `sbv_server_prop` (
+CREATE TABLE `lb_server_prop` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'server_prop',
   `version` bigint(20) DEFAULT '0',
@@ -12,12 +12,12 @@ CREATE TABLE `sbv_server_prop` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk__sbv_server_prop__name` (`name`),
-  KEY `idx__sbv_server_prop` (`name`)
+  UNIQUE KEY `uk__lb_server_prop__name` (`name`),
+  KEY `idx__lb_server_prop` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_context`;
-CREATE TABLE `sbv_context` (
+DROP TABLE IF EXISTS `lb_context`;
+CREATE TABLE `lb_context` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'context',
   `version` bigint(20) DEFAULT '0',
@@ -30,13 +30,13 @@ CREATE TABLE `sbv_context` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk__sbv_org_home_data__url` (`url`),
-  KEY `idx__sbv_context__url` (`url`),
-  KEY `idx__sbv_context__name` (`name`)
+  UNIQUE KEY `uk__lb_org_home_data__url` (`url`),
+  KEY `idx__lb_context__url` (`url`),
+  KEY `idx__lb_context__name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_user_role`;
-CREATE TABLE `sbv_user_role` (
+DROP TABLE IF EXISTS `lb_user_role`;
+CREATE TABLE `lb_user_role` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'user_role',
   `version` bigint(20) DEFAULT '0',
@@ -48,16 +48,16 @@ CREATE TABLE `sbv_user_role` (
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk__sbv_user_role__name__ctx_id` (`name`,`ctx_id`),
-  KEY `idx__sbv_user_role__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_user_role__name` (`name`),
-  KEY `idx__sbv_user_role__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_user_role__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_user_role__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`)
+  UNIQUE KEY `uk__lb_user_role__name__ctx_id` (`name`,`ctx_id`),
+  KEY `idx__lb_user_role__ctx_id` (`ctx_id`),
+  KEY `idx__lb_user_role__name` (`name`),
+  KEY `idx__lb_user_role__created_user_id` (`created_user_id`),
+  KEY `idx__lb_user_role__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_user_role__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_organization`;
-CREATE TABLE `sbv_organization` (
+DROP TABLE IF EXISTS `lb_organization`;
+CREATE TABLE `lb_organization` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'organization',
   `version` bigint(20) DEFAULT '0',
@@ -71,15 +71,15 @@ CREATE TABLE `sbv_organization` (
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_organization__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_organization__org_name` (`org_name`),
-  KEY `idx__sbv_organization__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_organization__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_organization__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`)
+  KEY `idx__lb_organization__ctx_id` (`ctx_id`),
+  KEY `idx__lb_organization__org_name` (`org_name`),
+  KEY `idx__lb_organization__created_user_id` (`created_user_id`),
+  KEY `idx__lb_organization__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_organization__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_user`;
-CREATE TABLE `sbv_user` (
+DROP TABLE IF EXISTS `lb_user`;
+CREATE TABLE `lb_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'user',
   `version` bigint(20) DEFAULT '0',
@@ -105,22 +105,22 @@ CREATE TABLE `sbv_user` (
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_login_un` (`login_name`),
-  KEY `idx__sbv_user__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_user__org_id` (`org_id`),
-  KEY `idx__sbv_user__role_id` (`role_id`),
-  KEY `idx__sbv_user__login_name` (`login_name`),
-  KEY `idx__sbv_user__display_name` (`display_name`),
-  KEY `idx__sbv_user__account_state` (`account_state`),
-  KEY `idx__sbv_user__aadhar_id` (`aadhar_id`),
-  KEY `idx__sbv_user__mobile_number` (`mobile_number`),
-  KEY `idx__sbv_user__designation` (`designation`),
-  CONSTRAINT `fk__sbv_user__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_user__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_user__role_id` FOREIGN KEY (`role_id`) REFERENCES `sbv_user_role` (`id`)
+  KEY `idx__lb_user__ctx_id` (`ctx_id`),
+  KEY `idx__lb_user__org_id` (`org_id`),
+  KEY `idx__lb_user__role_id` (`role_id`),
+  KEY `idx__lb_user__login_name` (`login_name`),
+  KEY `idx__lb_user__display_name` (`display_name`),
+  KEY `idx__lb_user__account_state` (`account_state`),
+  KEY `idx__lb_user__aadhar_id` (`aadhar_id`),
+  KEY `idx__lb_user__mobile_number` (`mobile_number`),
+  KEY `idx__lb_user__designation` (`designation`),
+  CONSTRAINT `fk__lb_user__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_user__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_user__role_id` FOREIGN KEY (`role_id`) REFERENCES `lb_user_role` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_login_history`;
-CREATE TABLE `sbv_login_history` (
+DROP TABLE IF EXISTS `lb_login_history`;
+CREATE TABLE `lb_login_history` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'login_history',
   `version` bigint(20) DEFAULT '0',
@@ -134,15 +134,15 @@ CREATE TABLE `sbv_login_history` (
   `login_type` bigint(4) DEFAULT NULL,
   `session_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_login_history__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_login_history__org_id` (`org_id`),
-  KEY `idx__sbv_login_history__user_id` (`user_id`),
-  CONSTRAINT `fk__sbv_login_history__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_sbv_login_history__user_id` FOREIGN KEY (`user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_login_history__ctx_id` (`ctx_id`),
+  KEY `idx__lb_login_history__org_id` (`org_id`),
+  KEY `idx__lb_login_history__user_id` (`user_id`),
+  CONSTRAINT `fk__lb_login_history__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_lb_login_history__user_id` FOREIGN KEY (`user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 
---DROP TABLE IF EXISTS `sbv_gallery_data`;
---CREATE TABLE `sbv_gallery_data` (
+--DROP TABLE IF EXISTS `lb_gallery_data`;
+--CREATE TABLE `lb_gallery_data` (
 --  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 --  `class_code` varchar(64) DEFAULT 'gallery_data',
 --  `version` bigint(20) DEFAULT '0',
@@ -155,16 +155,16 @@ CREATE TABLE `sbv_login_history` (
 --  `updated_time` datetime DEFAULT NULL,
 --  `updated_user_id` bigint(20) DEFAULT NULL,
 --  PRIMARY KEY (`id`),
---  KEY `idx__sbv_gallery_data__ctx_id` (`ctx_id`),
---  KEY `fk__sbv_gallery_data__created_user_id` (`created_user_id`),
---  KEY `fk__sbv_gallery_data__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__sbv_gallery_data__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
---  CONSTRAINT `fk__sbv_gallery_data__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
---  CONSTRAINT `fk__sbv_gallery_data__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+--  KEY `idx__lb_gallery_data__ctx_id` (`ctx_id`),
+--  KEY `fk__lb_gallery_data__created_user_id` (`created_user_id`),
+--  KEY `fk__lb_gallery_data__updated_user_id` (`updated_user_id`),
+--  CONSTRAINT `fk__lb_gallery_data__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+--  CONSTRAINT `fk__lb_gallery_data__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+--  CONSTRAINT `fk__lb_gallery_data__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 --) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_audit_data`;
-CREATE TABLE `sbv_audit_data` (
+DROP TABLE IF EXISTS `lb_audit_data`;
+CREATE TABLE `lb_audit_data` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'audit_data',
   `ctx_id` bigint(20) NOT NULL,
@@ -179,18 +179,18 @@ CREATE TABLE `sbv_audit_data` (
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_audit_data__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_audit_data__org_id` (`org_id`),
-  KEY `idx__sbv_audit_data__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_audit_data__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_audit_data__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_audit_data__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_audit_data__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_audit_data__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_audit_data__ctx_id` (`ctx_id`),
+  KEY `idx__lb_audit_data__org_id` (`org_id`),
+  KEY `idx__lb_audit_data__created_user_id` (`created_user_id`),
+  KEY `idx__lb_audit_data__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_audit_data__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_audit_data__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_audit_data__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_audit_data__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_property`;
-CREATE TABLE `sbv_property` (
+DROP TABLE IF EXISTS `lb_property`;
+CREATE TABLE `lb_property` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'property',
   `version` bigint(20) DEFAULT '0',
@@ -207,22 +207,22 @@ CREATE TABLE `sbv_property` (
   `updated_user_id` bigint(20) DEFAULT NULL,
   `venue_days_limit` bigint(20) NOT NULL;
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_property__ctx_id` (`ctx_id`),
-   KEY `idx__sbv_property__org_id` (`org_id`),
-  KEY `idx__sbv_property__property_id` (`property_id`),
-  KEY `idx__sbv_property__name` (`name`),
-  KEY `idx__sbv_property__state` (`state`),
-  KEY `idx__sbv_property__unique_id` (`unique_id`),
-  KEY `idx__sbv_property__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_property__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_property__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_property__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_property__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_property__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_property__ctx_id` (`ctx_id`),
+   KEY `idx__lb_property__org_id` (`org_id`),
+  KEY `idx__lb_property__property_id` (`property_id`),
+  KEY `idx__lb_property__name` (`name`),
+  KEY `idx__lb_property__state` (`state`),
+  KEY `idx__lb_property__unique_id` (`unique_id`),
+  KEY `idx__lb_property__created_user_id` (`created_user_id`),
+  KEY `idx__lb_property__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_property__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_property__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_property__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_property__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---DROP TABLE IF EXISTS `sbv_property_images`;
---CREATE TABLE `sbv_property_images` (
+--DROP TABLE IF EXISTS `lb_property_images`;
+--CREATE TABLE `lb_property_images` (
 --  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 --  `class_code` varchar(64) DEFAULT 'property_images',
 --  `version` bigint(20) DEFAULT '0',
@@ -237,19 +237,19 @@ CREATE TABLE `sbv_property` (
 --  `updated_time` datetime DEFAULT NULL,
 --  `updated_user_id` bigint(20) DEFAULT NULL,
 --  PRIMARY KEY (`id`),
---  KEY `idx__sbv_property_images__ctx_id` (`ctx_id`),
---  KEY `fk__sbv_property_images__property_id` (`property_id`),
---  KEY `idx__sbv_property_images__name` (`name`),
---  KEY `idx__sbv_property_images__created_user_id` (`created_user_id`),
---  KEY `idx__sbv_property_images__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__sbv_property_images__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
---  CONSTRAINT `fk__sbv_property_images__property_id` FOREIGN KEY (`property_id`) REFERENCES `sbv_property` (`id`),
---  CONSTRAINT `fk__sbv_property_images__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
---  CONSTRAINT `fk__sbv_property_images__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+--  KEY `idx__lb_property_images__ctx_id` (`ctx_id`),
+--  KEY `fk__lb_property_images__property_id` (`property_id`),
+--  KEY `idx__lb_property_images__name` (`name`),
+--  KEY `idx__lb_property_images__created_user_id` (`created_user_id`),
+--  KEY `idx__lb_property_images__updated_user_id` (`updated_user_id`),
+--  CONSTRAINT `fk__lb_property_images__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+--  CONSTRAINT `fk__lb_property_images__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
+--  CONSTRAINT `fk__lb_property_images__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+--  CONSTRAINT `fk__lb_property_images__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 --) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_rent_purpose`;
-CREATE TABLE `sbv_rent_purpose` (
+DROP TABLE IF EXISTS `lb_rent_purpose`;
+CREATE TABLE `lb_rent_purpose` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'rent_purpose',
   `version` bigint(20) DEFAULT '0',
@@ -263,18 +263,18 @@ CREATE TABLE `sbv_rent_purpose` (
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_rent_purpose__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_rent_purpose__org_id` (`org_id`),
-  KEY `idx__sbv_rent_purpose__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_rent_purpose__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_rent_purpose__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_rent_purpose__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_rent_purpose__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_rent_purpose__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_rent_purpose__ctx_id` (`ctx_id`),
+  KEY `idx__lb_rent_purpose__org_id` (`org_id`),
+  KEY `idx__lb_rent_purpose__created_user_id` (`created_user_id`),
+  KEY `idx__lb_rent_purpose__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_rent_purpose__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_rent_purpose__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_rent_purpose__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_rent_purpose__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_property_rent_price`;
-CREATE TABLE `sbv_property_rent_price` (
+DROP TABLE IF EXISTS `lb_property_rent_price`;
+CREATE TABLE `lb_property_rent_price` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'property_rent_price',
   `version` bigint(20) DEFAULT '0',
@@ -295,27 +295,27 @@ CREATE TABLE `sbv_property_rent_price` (
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk__sbv_property_rent_price__uk`(`property_id`, `purpose_id`, `slot_type`, `state`),
-  KEY `idx__sbv_property_rent_price__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_property_rent_price__org_id` (`org_id`),
-  KEY `idx__sbv_property_rent_price__property_id` (`property_id`),
-  KEY `idx__sbv_property_rent_price__purpose_id` (`purpose_id`),
-  KEY `idx__sbv_property_rent_price__state` (`state`),
-  KEY `idx__sbv_property_rent_price__start_time` (`start_time`),
-  KEY `idx__sbv_property_rent_price__end_time` (`end_time`),
-  KEY `idx__sbv_property_rent_price__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_property_rent_price__updated_user_id` (`updated_user_id`),
-  KEY `idx__sbv_property_rent_price__slot_type` (`slot_type`),
-  CONSTRAINT `fk__sbv_property_rent_price__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_property_rent_price__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_property_rent_price__property_id` FOREIGN KEY (`property_id`) REFERENCES `sbv_property` (`id`),
-  CONSTRAINT `fk__sbv_property_rent_price__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `sbv_rent_purpose` (`id`),
-  CONSTRAINT `fk__sbv_property_rent_price__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_property_rent_price__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  UNIQUE KEY `uk__lb_property_rent_price__uk`(`property_id`, `purpose_id`, `slot_type`, `state`),
+  KEY `idx__lb_property_rent_price__ctx_id` (`ctx_id`),
+  KEY `idx__lb_property_rent_price__org_id` (`org_id`),
+  KEY `idx__lb_property_rent_price__property_id` (`property_id`),
+  KEY `idx__lb_property_rent_price__purpose_id` (`purpose_id`),
+  KEY `idx__lb_property_rent_price__state` (`state`),
+  KEY `idx__lb_property_rent_price__start_time` (`start_time`),
+  KEY `idx__lb_property_rent_price__end_time` (`end_time`),
+  KEY `idx__lb_property_rent_price__created_user_id` (`created_user_id`),
+  KEY `idx__lb_property_rent_price__updated_user_id` (`updated_user_id`),
+  KEY `idx__lb_property_rent_price__slot_type` (`slot_type`),
+  CONSTRAINT `fk__lb_property_rent_price__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_property_rent_price__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_property_rent_price__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
+  CONSTRAINT `fk__lb_property_rent_price__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
+  CONSTRAINT `fk__lb_property_rent_price__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_property_rent_price__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---DROP TABLE IF EXISTS `sbv_invoice`;
---CREATE TABLE `sbv_invoice` (
+--DROP TABLE IF EXISTS `lb_invoice`;
+--CREATE TABLE `lb_invoice` (
 --  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 --  `class_code` varchar(64) DEFAULT 'invoice',
 --  `version` bigint(20) DEFAULT '0',
@@ -345,23 +345,23 @@ CREATE TABLE `sbv_property_rent_price` (
 --  `sur_charge` float(9,2) DEFAULT 0.00,
 --   `expiry_time` datetime NOT NULL,
 --  PRIMARY KEY (`id`),
---  KEY `idx__sbv_invoice__ctx_id` (`ctx_id`),
---  KEY `idx__sbv_invoice__org_id` (`org_id`),
---  KEY `idx__sbv_invoice__purpose_id` (`purpose_id`),
---  KEY `idx__sbv_invoice__p_rent_price_id` (`p_rent_price_id`),
---  KEY `idx__sbv_invoice_created_user_id` (`created_user_id`),
---  KEY `idx__sbv_invoice__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__sbv_invoice__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
---  CONSTRAINT `fk__sbv_invoice__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
---  CONSTRAINT `fk__sbv_invoice_id` FOREIGN KEY (`id`) REFERENCES `sbv_property` (`id`),
---  CONSTRAINT `fk__sbv_invoice__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `sbv_rent_purpose` (`id`),
---  CONSTRAINT `fk__sbv_invoice__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `sbv_property_rent_price` (`id`),
---  CONSTRAINT `fk__sbv_invoice__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
---  CONSTRAINT `fk__sbv_invoice__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+--  KEY `idx__lb_invoice__ctx_id` (`ctx_id`),
+--  KEY `idx__lb_invoice__org_id` (`org_id`),
+--  KEY `idx__lb_invoice__purpose_id` (`purpose_id`),
+--  KEY `idx__lb_invoice__p_rent_price_id` (`p_rent_price_id`),
+--  KEY `idx__lb_invoice_created_user_id` (`created_user_id`),
+--  KEY `idx__lb_invoice__updated_user_id` (`updated_user_id`),
+--  CONSTRAINT `fk__lb_invoice__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+--  CONSTRAINT `fk__lb_invoice__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+--  CONSTRAINT `fk__lb_invoice_id` FOREIGN KEY (`id`) REFERENCES `lb_property` (`id`),
+--  CONSTRAINT `fk__lb_invoice__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
+--  CONSTRAINT `fk__lb_invoice__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `lb_property_rent_price` (`id`),
+--  CONSTRAINT `fk__lb_invoice__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+--  CONSTRAINT `fk__lb_invoice__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 --) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
---DROP TABLE IF EXISTS `sbv_bill`;
---CREATE TABLE `sbv_bill` (
+--DROP TABLE IF EXISTS `lb_bill`;
+--CREATE TABLE `lb_bill` (
 --  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 --  `class_code` varchar(64) DEFAULT 'bill',
 --  `version` bigint(20) DEFAULT '0',
@@ -431,27 +431,27 @@ CREATE TABLE `sbv_property_rent_price` (
 --  `expiry_time` datetime NOT NULL,
 --  `referred_by` varchar(64) NOT NULL,
 --   PRIMARY KEY (`id`),
---  KEY `idx__sbv_bill__ctx_id` (`ctx_id`),
---  KEY `idx__sbv_bill__org_id` (`org_id`),
---  KEY `idx__sbv_bill__property_id` (`property_id`),
---  KEY `idx__sbv_bill__purpose_id` (`purpose_id`),
---  KEY `idx__sbv_bill__invoice_id` (`invoice_id`),
---  KEY `idx__sbv_bill__p_rent_price_id` (`p_rent_price_id`),
---  KEY `idx__sbv_bill__mobile_number` (`mobile_number`),
---  KEY `idx__sbv_bill__created_user_id` (`created_user_id`),
---  KEY `idx__sbv_bill__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__sbv_bill__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
---  CONSTRAINT `fk__sbv_bill__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
---  CONSTRAINT `fk__sbv_bill__property_id` FOREIGN KEY (`property_id`) REFERENCES `sbv_property` (`id`),
---  CONSTRAINT `fk__sbv_bill__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `sbv_rent_purpose` (`id`),
---  CONSTRAINT `fk__sbv_bill__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `sbv_property_rent_price` (`id`),
---  CONSTRAINT `fk__sbv_bill__invoice_id` FOREIGN KEY (`invoice_id`) REFERENCES `sbv_invoice` (`id`),
---  CONSTRAINT `fk__sbv_bill__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
---  CONSTRAINT `fk__sbv_bill__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+--  KEY `idx__lb_bill__ctx_id` (`ctx_id`),
+--  KEY `idx__lb_bill__org_id` (`org_id`),
+--  KEY `idx__lb_bill__property_id` (`property_id`),
+--  KEY `idx__lb_bill__purpose_id` (`purpose_id`),
+--  KEY `idx__lb_bill__invoice_id` (`invoice_id`),
+--  KEY `idx__lb_bill__p_rent_price_id` (`p_rent_price_id`),
+--  KEY `idx__lb_bill__mobile_number` (`mobile_number`),
+--  KEY `idx__lb_bill__created_user_id` (`created_user_id`),
+--  KEY `idx__lb_bill__updated_user_id` (`updated_user_id`),
+--  CONSTRAINT `fk__lb_bill__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+--  CONSTRAINT `fk__lb_bill__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+--  CONSTRAINT `fk__lb_bill__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
+--  CONSTRAINT `fk__lb_bill__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
+--  CONSTRAINT `fk__lb_bill__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `lb_property_rent_price` (`id`),
+--  CONSTRAINT `fk__lb_bill__invoice_id` FOREIGN KEY (`invoice_id`) REFERENCES `lb_invoice` (`id`),
+--  CONSTRAINT `fk__lb_bill__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+--  CONSTRAINT `fk__lb_bill__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 --) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_payment_gateway_details`;
-CREATE TABLE `sbv_payment_gateway_details`(
+DROP TABLE IF EXISTS `lb_payment_gateway_details`;
+CREATE TABLE `lb_payment_gateway_details`(
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'property',
   `version` bigint(20) DEFAULT '0',
@@ -471,20 +471,20 @@ CREATE TABLE `sbv_payment_gateway_details`(
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_payment_gateway_details__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_payment_gateway_details__org_id` (`org_id`),
-  KEY `idx__sbv_payment_gateway_details__status` (`status`),
-  KEY `idx__sbv_payment_gateway_details__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_payment_gateway_details__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_payment_gateway_details__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_payment_gateway_details__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_payment_gateway_details__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_payment_gateway_details__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_payment_gateway_details__ctx_id` (`ctx_id`),
+  KEY `idx__lb_payment_gateway_details__org_id` (`org_id`),
+  KEY `idx__lb_payment_gateway_details__status` (`status`),
+  KEY `idx__lb_payment_gateway_details__created_user_id` (`created_user_id`),
+  KEY `idx__lb_payment_gateway_details__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_payment_gateway_details__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_payment_gateway_details__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_payment_gateway_details__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_payment_gateway_details__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
   -- end
 
-DROP TABLE IF EXISTS `sbv_total_status`;
-CREATE TABLE `sbv_total_status` (
+DROP TABLE IF EXISTS `lb_total_status`;
+CREATE TABLE `lb_total_status` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'total_status',
   `version` bigint(20) DEFAULT '0',
@@ -502,21 +502,21 @@ CREATE TABLE `sbv_total_status` (
   `updated_user_id` bigint(20) DEFAULT NULL,
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_total_status__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_total_status__name` (`name`),
-  KEY `idx__sbv_total_status__property_id` (`property_id`),
-  KEY `idx__sbv_total_status__purpose_id` (`purpose_id`),
-  KEY `idx__sbv_total_status__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_total_status__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_total_status__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_total_status__property_id` FOREIGN KEY (`property_id`) REFERENCES `sbv_property` (`id`),
-  CONSTRAINT `fk__sbv_total_status__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `sbv_rent_purpose` (`id`),
-  CONSTRAINT `fk__sbv_total_status__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_total_status__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_total_status__ctx_id` (`ctx_id`),
+  KEY `idx__lb_total_status__name` (`name`),
+  KEY `idx__lb_total_status__property_id` (`property_id`),
+  KEY `idx__lb_total_status__purpose_id` (`purpose_id`),
+  KEY `idx__lb_total_status__created_user_id` (`created_user_id`),
+  KEY `idx__lb_total_status__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_total_status__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_total_status__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
+  CONSTRAINT `fk__lb_total_status__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
+  CONSTRAINT `fk__lb_total_status__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_total_status__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_sms_gateway_details`;
-CREATE TABLE `sbv_sms_gateway_details`(
+DROP TABLE IF EXISTS `lb_sms_gateway_details`;
+CREATE TABLE `lb_sms_gateway_details`(
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'sms_gateway_details',
   `version` bigint(20) DEFAULT '0',
@@ -529,18 +529,18 @@ CREATE TABLE `sbv_sms_gateway_details`(
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_sms_gateway_details__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_sms_gateway_details__org_id` (`org_id`),
-  KEY `idx__sbv_sms_gateway_details__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_sms_gateway_details__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_sms_gateway_details__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_sms_gateway_details__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_sms_gateway_details__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_sms_gateway_details__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_sms_gateway_details__ctx_id` (`ctx_id`),
+  KEY `idx__lb_sms_gateway_details__org_id` (`org_id`),
+  KEY `idx__lb_sms_gateway_details__created_user_id` (`created_user_id`),
+  KEY `idx__lb_sms_gateway_details__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_sms_gateway_details__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_sms_gateway_details__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_sms_gateway_details__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_sms_gateway_details__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_marquee`;
-CREATE TABLE `sbv_marquee`(
+DROP TABLE IF EXISTS `lb_marquee`;
+CREATE TABLE `lb_marquee`(
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'marquee',
   `version` bigint(20) DEFAULT '0',
@@ -553,18 +553,18 @@ CREATE TABLE `sbv_marquee`(
   `updated_user_id` bigint(20) DEFAULT NULL,
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_marquee__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_marquee__org_id` (`org_id`),
-  KEY `idx__sbv_marquee__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_marquee__updated_user_id` (`updated_user_id`),
-  CONSTRAINT `fk__sbv_marquee__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-  CONSTRAINT `fk__sbv_marquee__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-  CONSTRAINT `fk__sbv_marquee__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-  CONSTRAINT `fk__sbv_marquee__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_marquee__ctx_id` (`ctx_id`),
+  KEY `idx__lb_marquee__org_id` (`org_id`),
+  KEY `idx__lb_marquee__created_user_id` (`created_user_id`),
+  KEY `idx__lb_marquee__updated_user_id` (`updated_user_id`),
+  CONSTRAINT `fk__lb_marquee__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+  CONSTRAINT `fk__lb_marquee__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+  CONSTRAINT `fk__lb_marquee__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+  CONSTRAINT `fk__lb_marquee__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sbv_end_user`;
-CREATE TABLE `sbv_end_user` (
+DROP TABLE IF EXISTS `lb_end_user`;
+CREATE TABLE `lb_end_user` (
  `id` bigint(20) NOT NULL AUTO_INCREMENT,
  `class_code` varchar(64) DEFAULT 'end_user',
  `version` bigint(20) DEFAULT '0',
@@ -623,29 +623,29 @@ CREATE TABLE `sbv_end_user` (
   `updated_time` datetime DEFAULT NULL,
   `user_state` varchar(8) DEFAULT 'ACTIVE',
   PRIMARY KEY (`id`),
-  KEY `idx__sbv_end_user__ctx_id` (`ctx_id`),
-  KEY `idx__sbv_end_user__org_id` (`org_id`),
-  KEY `idx__sbv_end_user__id` (`id`),
-  KEY `idx__sbv_end_user__property_rent_price_id` (`property_rent_price_id`),
-  KEY `idx__sbv_end_user__property_id` (`property_id`),
-  KEY `idx__sbv_end_user__purpose_id` (`purpose_id`),
-  KEY `idx__sbv_end_user__mobile_number` (`mobile_number`),
-  KEY `idx__sbv_end_user__created_user_id` (`created_user_id`),
-  KEY `idx__sbv_end_user__updated_user_id` (`updated_user_id`),
- CONSTRAINT `fk__sbv_end_user__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
- CONSTRAINT `fk__sbv_end_user__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
- CONSTRAINT `fk__sbv_end_user__property_rent_price_id` FOREIGN KEY (`property_rent_price_id`) REFERENCES `sbv_property_rent_price` (`id`),
- CONSTRAINT `fk__sbv_end_user__property_id` FOREIGN KEY (`property_id`) REFERENCES `sbv_property` (`id`),
- CONSTRAINT `fk__sbv_end_user__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `sbv_rent_purpose` (`id`),
- CONSTRAINT `fk__sbv_end_user__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
- CONSTRAINT `fk__sbv_end_user__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+  KEY `idx__lb_end_user__ctx_id` (`ctx_id`),
+  KEY `idx__lb_end_user__org_id` (`org_id`),
+  KEY `idx__lb_end_user__id` (`id`),
+  KEY `idx__lb_end_user__property_rent_price_id` (`property_rent_price_id`),
+  KEY `idx__lb_end_user__property_id` (`property_id`),
+  KEY `idx__lb_end_user__purpose_id` (`purpose_id`),
+  KEY `idx__lb_end_user__mobile_number` (`mobile_number`),
+  KEY `idx__lb_end_user__created_user_id` (`created_user_id`),
+  KEY `idx__lb_end_user__updated_user_id` (`updated_user_id`),
+ CONSTRAINT `fk__lb_end_user__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+ CONSTRAINT `fk__lb_end_user__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+ CONSTRAINT `fk__lb_end_user__property_rent_price_id` FOREIGN KEY (`property_rent_price_id`) REFERENCES `lb_property_rent_price` (`id`),
+ CONSTRAINT `fk__lb_end_user__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
+ CONSTRAINT `fk__lb_end_user__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
+ CONSTRAINT `fk__lb_end_user__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+ CONSTRAINT `fk__lb_end_user__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
  ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;  
 
 -- end 
  
  
- DROP TABLE IF EXISTS `sbv_forgot_passwd`;
-CREATE TABLE `sbv_forgot_passwd` (
+ DROP TABLE IF EXISTS `lb_forgot_passwd`;
+CREATE TABLE `lb_forgot_passwd` (
 `id` bigint(20) NOT NULL AUTO_INCREMENT,
 `class_code` varchar(64) DEFAULT 'forgot_passwd',
 `version` bigint(20) DEFAULT '0',
@@ -663,14 +663,14 @@ CREATE TABLE `sbv_forgot_passwd` (
 `updated_user_id` bigint(20) DEFAULT NULL,
 `updated_time` datetime DEFAULT NULL,
 PRIMARY KEY (`id`),
-KEY `idx__sbv_forgot_passwd__created_user_id` (`created_user_id`),
-KEY `idx__sbv_forgot_passwd__updated_user_id` (`updated_user_id`),
-KEY `idx__sbv_forgot_passwd__ctx_id` (`ctx_id`),
-KEY `idx__sbv_forgot_passwd__org_id` (`org_id`),
-CONSTRAINT `fk__forgot_passwd__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `sbv_context` (`id`),
-CONSTRAINT `fk__sbv_forgot_passwd__org_id` FOREIGN KEY (`org_id`) REFERENCES `sbv_organization` (`id`),
-CONSTRAINT `fk__sbv_forgot_passwd__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `sbv_user` (`id`),
-CONSTRAINT `fk__sbv_forgot_passwd__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `sbv_user` (`id`)
+KEY `idx__lb_forgot_passwd__created_user_id` (`created_user_id`),
+KEY `idx__lb_forgot_passwd__updated_user_id` (`updated_user_id`),
+KEY `idx__lb_forgot_passwd__ctx_id` (`ctx_id`),
+KEY `idx__lb_forgot_passwd__org_id` (`org_id`),
+CONSTRAINT `fk__forgot_passwd__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
+CONSTRAINT `fk__lb_forgot_passwd__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
+CONSTRAINT `fk__lb_forgot_passwd__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
+CONSTRAINT `fk__lb_forgot_passwd__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
  
