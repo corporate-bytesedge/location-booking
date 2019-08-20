@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author Divya
  */
 @Entity
-@Table(name = "sbv_forgot_passwd")
+@Table(name = "lb_forgot_passwd")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "forgot_passwd")
 @SuppressWarnings("serial")

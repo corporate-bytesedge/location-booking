@@ -15,7 +15,7 @@ import javax.persistence.Transient;
  * stores the roles of an user
  */
 @Entity
-@Table(name = "sbv_user_role")
+@Table(name = "lb_user_role")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "user_role")
 @SuppressWarnings("serial")

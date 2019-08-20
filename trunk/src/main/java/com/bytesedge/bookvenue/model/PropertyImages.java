@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author divya
  */
 @Entity
-@Table(name = "sbv_property_images")
+@Table(name = "lb_property_images")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "property_images")
 @SuppressWarnings("serial")

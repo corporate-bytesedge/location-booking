@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * Send SMS details
  */
 @Entity
-@Table(name = "sbv_sms_gateway_details")
+@Table(name = "lb_sms_gateway_details")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "sms_gateway_details")
 @SuppressWarnings("serial")

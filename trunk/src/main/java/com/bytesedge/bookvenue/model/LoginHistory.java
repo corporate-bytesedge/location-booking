@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "login_history")
-@Table(name = "sbv_login_history")
+@Table(name = "lb_login_history")
 public class LoginHistory extends BaseDo {
 
 	/*
