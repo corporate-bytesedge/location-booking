@@ -41,9 +41,9 @@
 						mail.smtp.host="127.0.0.1" mail.user="" mail.password="" />
 
 					<Resource name="jdbc/webApp" type="javax.sql.DataSource"
-						maxActive="25" maxIdle="10" maxWait="10000" username="sbv"
-						password="1_SbvDataBase" driverClassName="com.mysql.cj.jdbc.Driver"
-						url="jdbc:mysql://db01-dc01/sbv?useUnicode=true&amp;characterEncoding=utf8"
+						maxActive="25" maxIdle="10" maxWait="10000" username="lb"
+						password="1_LbDataBase" driverClassName="com.mysql.cj.jdbc.Driver"
+						url="jdbc:mysql://localhost/lb?useUnicode=true&amp;characterEncoding=utf8"
 						defaultAutoCommit="false" logAbandoned="false" validationQuery="SELECT 1"
 						removeAbandoned="true" testOnBorrow="true" testWhileIdle="true"
 						timeBetweenEvictionRunsMillis="10000" minEvictableIdleTimeMillis="180000"
