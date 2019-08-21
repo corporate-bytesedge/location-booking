@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * Its stores the user details who registered
  */
 @Entity
-@Table(name = "sbv_user")
+@Table(name = "lb_user")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "user")
 @SuppressWarnings("serial")
