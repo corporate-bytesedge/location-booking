@@ -1,8 +1,6 @@
-
 use lb;
 
 DROP TABLE IF EXISTS `lb_server_prop`;
-
 CREATE TABLE `lb_server_prop` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'server_prop',
@@ -141,28 +139,6 @@ CREATE TABLE `lb_login_history` (
   CONSTRAINT `fk__lb_lb_login_history__user_id` FOREIGN KEY (`user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 
---DROP TABLE IF EXISTS `lb_gallery_data`;
---CREATE TABLE `lb_gallery_data` (
---  `id` bigint(20) NOT NULL AUTO_INCREMENT,
---  `class_code` varchar(64) DEFAULT 'gallery_data',
---  `version` bigint(20) DEFAULT '0',
---  `ctx_id` bigint(20) NOT NULL,
---  `date` datetime NOT NULL,
---  `image_path` varchar(64) NOT NULL,
---  `source` varchar(64) NOT NULL,
---  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
---  `created_user_id` bigint(20) NOT NULL,
---  `updated_time` datetime DEFAULT NULL,
---  `updated_user_id` bigint(20) DEFAULT NULL,
---  PRIMARY KEY (`id`),
---  KEY `idx__lb_gallery_data__ctx_id` (`ctx_id`),
---  KEY `fk__lb_gallery_data__created_user_id` (`created_user_id`),
---  KEY `fk__lb_gallery_data__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__lb_gallery_data__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
---  CONSTRAINT `fk__lb_gallery_data__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
---  CONSTRAINT `fk__lb_gallery_data__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
---) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `lb_audit_data`;
 CREATE TABLE `lb_audit_data` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -205,7 +181,7 @@ CREATE TABLE `lb_property` (
   `created_user_id` bigint(20) NOT NULL,
   `updated_time` datetime DEFAULT NULL,
   `updated_user_id` bigint(20) DEFAULT NULL,
-  `venue_days_limit` bigint(20) NOT NULL;
+  `venue_days_limit` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx__lb_property__ctx_id` (`ctx_id`),
    KEY `idx__lb_property__org_id` (`org_id`),
@@ -220,33 +196,6 @@ CREATE TABLE `lb_property` (
   CONSTRAINT `fk__lb_property__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
   CONSTRAINT `fk__lb_property__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---DROP TABLE IF EXISTS `lb_property_images`;
---CREATE TABLE `lb_property_images` (
---  `id` bigint(20) NOT NULL AUTO_INCREMENT,
---  `class_code` varchar(64) DEFAULT 'property_images',
---  `version` bigint(20) DEFAULT '0',
---  `ctx_id` bigint(20) NOT NULL,
---  `property_id` bigint(20) NOT NULL,
---  `name` varchar(64) NOT NULL,
---  `from_date` datetime NOT NULL,
---  `to_date` datetime NOT NULL,
---  `descr` varchar(255) DEFAULT NULL,
---  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
---  `created_user_id` bigint(20) NOT NULL,
---  `updated_time` datetime DEFAULT NULL,
---  `updated_user_id` bigint(20) DEFAULT NULL,
---  PRIMARY KEY (`id`),
---  KEY `idx__lb_property_images__ctx_id` (`ctx_id`),
---  KEY `fk__lb_property_images__property_id` (`property_id`),
---  KEY `idx__lb_property_images__name` (`name`),
---  KEY `idx__lb_property_images__created_user_id` (`created_user_id`),
---  KEY `idx__lb_property_images__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__lb_property_images__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
---  CONSTRAINT `fk__lb_property_images__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
---  CONSTRAINT `fk__lb_property_images__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
---  CONSTRAINT `fk__lb_property_images__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
---) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `lb_rent_purpose`;
 CREATE TABLE `lb_rent_purpose` (
@@ -277,19 +226,19 @@ DROP TABLE IF EXISTS `lb_property_rent_price`;
 CREATE TABLE `lb_property_rent_price` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `class_code` varchar(64) DEFAULT 'property_rent_price',
-  `version` bigint(20) DEFAULT '0',
+  `version` bigint(20) DEFAULT 0,
   `ctx_id` bigint(20) NOT NULL,
   `org_id` bigint(20) NOT NULL,
   `slot_type` varchar(8) DEFAULT 'NONE',
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
-  `price` float(9,2) DEFAULT '0.00',
+  `price` float(9,2) DEFAULT 0.00,
   `state` varchar(8) DEFAULT 'Active',
   `property_id` bigint(20) NOT NULL,
   `purpose_id` bigint(20) NOT NULL,
-  `cgst` float(9,2) DEFAULT '9.00',
-  `sgst` float(9,2) DEFAULT '9.00',
-  `service_tax` float(9,2) DEFAULT '3.45',
+  `cgst` float(9,2) DEFAULT 9.00,
+  `sgst` float(9,2) DEFAULT 9.00,
+  `service_tax` float(9,2) DEFAULT 3.45,
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_user_id` bigint(20) NOT NULL,
   `updated_time` datetime DEFAULT NULL,
@@ -314,141 +263,6 @@ CREATE TABLE `lb_property_rent_price` (
   CONSTRAINT `fk__lb_property_rent_price__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---DROP TABLE IF EXISTS `lb_invoice`;
---CREATE TABLE `lb_invoice` (
---  `id` bigint(20) NOT NULL AUTO_INCREMENT,
---  `class_code` varchar(64) DEFAULT 'invoice',
---  `version` bigint(20) DEFAULT '0',
---  `ctx_id` bigint(20) NOT NULL,
---  `org_id` bigint(20) NOT NULL,
---  `p_rent_price_id` bigint(20) NOT NULL,
---  `purpose_id` bigint(20) NOT NULL,
---  `application_id` varchar(32) NOT NULL,
---  `client_code` varchar(32) NOT NULL,
---  `proof_id` varchar(24) NOT NULL,
---  `id_proof_type` varchar(20) DEFAULT 'AADHAAR',
---  `name` varchar(64) NOT NULL,
---  `mobile_number` varchar(14) NOT NULL,
---  `email` varchar(64) NOT NULL,
---  `date` datetime NOT NULL,
---  `addr` varchar(1024) NOT NULL,
---  `status` varchar(8) DEFAULT 'PENDING',
---  `cgst` float(9,2) DEFAULT 0.00,
---  `sgst` float(9,2) DEFAULT 0.00,
---  `rent_price` float(9,2) DEFAULT 0.00,
---  `total_price` float(9,2) DEFAULT 0.00,
---  `deposit_price` float(9,2) DEFAULT 0.00,
---  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
---  `created_user_id` bigint(20) NOT NULL,
---  `updated_time` datetime DEFAULT NULL,
---  `updated_user_id` bigint(20) DEFAULT NULL,
---  `sur_charge` float(9,2) DEFAULT 0.00,
---   `expiry_time` datetime NOT NULL,
---  PRIMARY KEY (`id`),
---  KEY `idx__lb_invoice__ctx_id` (`ctx_id`),
---  KEY `idx__lb_invoice__org_id` (`org_id`),
---  KEY `idx__lb_invoice__purpose_id` (`purpose_id`),
---  KEY `idx__lb_invoice__p_rent_price_id` (`p_rent_price_id`),
---  KEY `idx__lb_invoice_created_user_id` (`created_user_id`),
---  KEY `idx__lb_invoice__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__lb_invoice__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
---  CONSTRAINT `fk__lb_invoice__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
---  CONSTRAINT `fk__lb_invoice_id` FOREIGN KEY (`id`) REFERENCES `lb_property` (`id`),
---  CONSTRAINT `fk__lb_invoice__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
---  CONSTRAINT `fk__lb_invoice__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `lb_property_rent_price` (`id`),
---  CONSTRAINT `fk__lb_invoice__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
---  CONSTRAINT `fk__lb_invoice__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
---) ENGINE=InnoDB DEFAULT CHARSET=utf8;
---
---DROP TABLE IF EXISTS `lb_bill`;
---CREATE TABLE `lb_bill` (
---  `id` bigint(20) NOT NULL AUTO_INCREMENT,
---  `class_code` varchar(64) DEFAULT 'bill',
---  `version` bigint(20) DEFAULT '0',
---  `ctx_id` bigint(20) NOT NULL,
---  `org_id` bigint(20) NOT NULL,
---  `property_id` bigint(20) NOT NULL,
---  `purpose_id` bigint(20) NOT NULL,
---  `invoice_id` bigint(20) NOT NULL,
---  `p_rent_price_id` bigint(20) NOT NULL,
---  `application_id` varchar(32) NOT NULL,
---  `name` varchar(64) NOT NULL,
---  `email` varchar(64) NOT NULL,
---  `username` varchar(64) NOT NULL,
---  `id_proof_type` varchar(20) DEFAULT 'AADHAAR',
---  `proof_id` varchar(24) NOT NULL,
---  `date` datetime NOT NULL,  
---  `mobile_number` varchar(14) NOT NULL,
---  `addr` varchar(255) NOT NULL,
---  `cgst` float(9,2) DEFAULT 0.00,
---  `sgst` float(9,2) DEFAULT 0.00,
---  `total` float(9,2) DEFAULT 0.00,
---  `price` float(9,2) DEFAULT 0.00,
---  `rent_price` float(9,2) DEFAULT 0.00,
---  `sur_charge_in` float(9,2) DEFAULT 2.84,
---  `addr_in` varchar(1024) NOT NULL,
---  `application_id_in` varchar(32) NOT NULL,
---  `email_in` varchar(64) NOT NULL,
---  `proof_id_in` varchar(24) NOT NULL,
---  `id_proof_type_in` varchar(20) DEFAULT 'AADHAAR',
---  `date_in` datetime NOT NULL,
---  `purpose_id_in` bigint(20) NOT NULL,
---  `mobile_number_in` varchar(14) NOT NULL,
---  `name_in` varchar(64) NOT NULL,
---  `cgst_in` float(9,2) DEFAULT 0.00,
---  `sgst_in` float(9,2) DEFAULT 0.00,
---  `deposit_price_in` float(9,2) DEFAULT 0.00,
---  `udf1` varchar(64) NOT NULL,
---  `udf2` varchar(64) NOT NULL,
---  `udf3` varchar(14) NOT NULL,
---  `udf4` varchar(255) DEFAULT NULL,
---  `sur_charge` float(9,2) DEFAULT 0.00,
---  `mer_txn` varchar(24) NOT NULL,
---  `mmp_txn` varchar(24) NOT NULL,
---  `prod` varchar(8) NOT NULL,
---  `bnk_txn` varchar(16) NOT NULL,
---  `f_code` varchar(8) NOT NULL,
---  `client_code` varchar(32) NOT NULL,
---  `bnk_name` varchar(24) NOT NULL,
---  `auth_code` varchar(8) NOT NULL,
---  `ipg_txn_id` varchar(16) NOT NULL,
---  `mer_id` varchar(8) NOT NULL,
---  `date_p` varchar(64) NOT NULL,
---  `desc1` varchar(32) NOT NULL,
---  `udf9` varchar(32) DEFAULT NULL,
---  `udf5` varchar(32) DEFAULT NULL,
---  `udf6` varchar(32) DEFAULT NULL,
---  `card_number` varchar(32) NOT NULL,
---  `discr1` varchar(32) NOT NULL,
---  `amt` varchar(64) NOT NULL,
---  `status` varchar(8) DEFAULT 'PENDING',
---  `res_sig` varchar(255) NOT NULL,
---  `created_user_id` bigint(20) NOT NULL,
---  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
---  `updated_user_id` bigint(20) DEFAULT NULL,
---  `updated_time` datetime DEFAULT NULL,
---  `payment_mode` varchar(20) DEFAULT 'PAYMENTGATEWAY',
---  `expiry_time` datetime NOT NULL,
---  `referred_by` varchar(64) NOT NULL,
---   PRIMARY KEY (`id`),
---  KEY `idx__lb_bill__ctx_id` (`ctx_id`),
---  KEY `idx__lb_bill__org_id` (`org_id`),
---  KEY `idx__lb_bill__property_id` (`property_id`),
---  KEY `idx__lb_bill__purpose_id` (`purpose_id`),
---  KEY `idx__lb_bill__invoice_id` (`invoice_id`),
---  KEY `idx__lb_bill__p_rent_price_id` (`p_rent_price_id`),
---  KEY `idx__lb_bill__mobile_number` (`mobile_number`),
---  KEY `idx__lb_bill__created_user_id` (`created_user_id`),
---  KEY `idx__lb_bill__updated_user_id` (`updated_user_id`),
---  CONSTRAINT `fk__lb_bill__ctx_id` FOREIGN KEY (`ctx_id`) REFERENCES `lb_context` (`id`),
---  CONSTRAINT `fk__lb_bill__org_id` FOREIGN KEY (`org_id`) REFERENCES `lb_organization` (`id`),
---  CONSTRAINT `fk__lb_bill__property_id` FOREIGN KEY (`property_id`) REFERENCES `lb_property` (`id`),
---  CONSTRAINT `fk__lb_bill__purpose_id` FOREIGN KEY (`purpose_id`) REFERENCES `lb_rent_purpose` (`id`),
---  CONSTRAINT `fk__lb_bill__p_rent_price_id` FOREIGN KEY (`p_rent_price_id`) REFERENCES `lb_property_rent_price` (`id`),
---  CONSTRAINT `fk__lb_bill__invoice_id` FOREIGN KEY (`invoice_id`) REFERENCES `lb_invoice` (`id`),
---  CONSTRAINT `fk__lb_bill__created_user_id` FOREIGN KEY (`created_user_id`) REFERENCES `lb_user` (`id`),
---  CONSTRAINT `fk__lb_bill__updated_user_id` FOREIGN KEY (`updated_user_id`) REFERENCES `lb_user` (`id`)
---) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `lb_payment_gateway_details`;
 CREATE TABLE `lb_payment_gateway_details`(
@@ -642,9 +456,7 @@ CREATE TABLE `lb_end_user` (
  ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;  
 
 -- end 
- 
- 
- DROP TABLE IF EXISTS `lb_forgot_passwd`;
+DROP TABLE IF EXISTS `lb_forgot_passwd`;
 CREATE TABLE `lb_forgot_passwd` (
 `id` bigint(20) NOT NULL AUTO_INCREMENT,
 `class_code` varchar(64) DEFAULT 'forgot_passwd',

@@ -3,7 +3,7 @@ use lb
 
 LOCK TABLES `lb_context` WRITE;
 INSERT INTO `lb_context` VALUES 
-(1,'context',0,'192.168.1.215','Bytesedge','be','040 2345678','8019016677','support@lb.be.gov.in','2017-10-13 22:54:01','2017-07-22 21:35:00'),
+(1,'context',0,'192.168.56.104','Bytesedge','be','040 2345678','8019016677','support@lb.be.gov.in','2017-10-13 22:54:01','2017-07-22 21:35:00'),
 (2,'context',0,'ts.shilparamam.com','shilparamam(upcoming...)','srm','040 2345678','8019016678','support@lb.srm.gov.in','2017-10-13 22:54:01','2017-07-22 21:37:00'),
 (3,'context',0,'ts.shilpakalavedhika.com','shilpakalavedhika(upcoming...)','skv','040 2345679','8019016668','support@lb.skv.gov.in','2017-10-13 22:54:01','2017-07-22 21:37:00');
 UNLOCK TABLES;
@@ -85,7 +85,7 @@ INSERT INTO `lb_property_rent_price`VALUES(39,'property_rent_price',0,1,1,'WEEKE
 INSERT INTO `lb_property_rent_price`VALUES(40,'property_rent_price',0,1,1,'WEEKEND',NULL,NULL,100000.00,'Active',4,5,9.00,9.00,3.00,'2018-12-21 17:16:07',1,NULL,NULL);
 -- end
 --
-INSERT INTO `lb_payment_gateway_details`(ctx_id,org_id,login,password,req_hash_key,res_hash_key,status,txn_curr,created_user_id,updated_user_id,ttype,prodid,mer_url) VALUES(1,1,'197','Test@123','KEY123657234','KEYRESP123657234','Active','INR',1,1,'NBFundTransfer','NSE','https://192.168.1.35/apu/ext/paymentGatewayResponse');
+INSERT INTO `lb_payment_gateway_details`(ctx_id,org_id,login,password,req_hash_key,res_hash_key,status,txn_curr,created_user_id,updated_user_id,ttype,prodid,mer_url) VALUES(1,1,'197','Test@123','KEY123657234','KEYRESP123657234','Active','INR',1,1,'NBFundTransfer','NSE','https://192.168.56.104/apu/ext/paymentGatewayResponse');
 
 --
 INSERT INTO `lb_marquee`(ctx_id,org_id,text,created_user_id) values(1,1,'Welcome!',1);
