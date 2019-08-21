@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * property is nothing but types of venues
  */
 @Entity
-@Table(name = "sbv_property")
+@Table(name = "lb_property")
 @DiscriminatorColumn(name = "class_code", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "property")
 @SuppressWarnings("serial")
