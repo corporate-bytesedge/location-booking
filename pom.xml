@@ -215,7 +215,7 @@
 
 		<!-- spring security -->
 		<spring-security-core.version>5.0.4.RELEASE</spring-security-core.version>
-		<spring-security-web.version>5.0.4.RELEASE</spring-security-web.version>
+		<spring-security-web.version>5.2.10.RELEASE</spring-security-web.version>
 		<spring-security-ldap.version>5.0.4.RELEASE</spring-security-ldap.version>
 		<spring-security-config.version>5.0.4.RELEASE</spring-security-config.version>
 		<spring-security-taglibs.version>5.0.4.RELEASE</spring-security-taglibs.version>
