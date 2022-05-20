@@ -251,7 +251,7 @@
 
 		<jackson.version>2.9.5</jackson.version>
 
-		<gson.version>2.8.2</gson.version>
+		<gson.version>2.8.9</gson.version>
 
 		<!-- schduler -->
 		<quartz.version>2.3.0</quartz.version>
