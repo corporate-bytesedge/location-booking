@@ -200,7 +200,7 @@
 		<!-- spring core -->
 		<spring-core.version>5.0.5.RELEASE</spring-core.version>
 		<spring-aspects.version>5.0.5.RELEASE</spring-aspects.version>
-		<spring-beans.version>5.0.5.RELEASE</spring-beans.version>
+		<spring-beans.version>5.2.20.RELEASE</spring-beans.version>
 		<spring-aop.version>5.0.5.RELEASE</spring-aop.version>
 		<spring-context.version>5.0.5.RELEASE</spring-context.version>
 		<spring-context-support.version>5.0.5.RELEASE</spring-context-support.version>
