@@ -209,7 +209,7 @@
 		<spring-orm.version>5.0.5.RELEASE</spring-orm.version>
 		<spring-oxm.version>5.0.5.RELEASE</spring-oxm.version>
 		<spring-web.version>5.0.5.RELEASE</spring-web.version>
-		<spring-webmvc.version>5.0.5.RELEASE</spring-webmvc.version>
+		<spring-webmvc.version>5.2.20.RELEASE</spring-webmvc.version>
 		<spring-test.version>5.0.5.RELEASE</spring-test.version>
 		<spring-expression.version>5.0.5.RELEASE</spring-expression.version>
 
